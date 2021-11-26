@@ -1,20 +1,8 @@
-import {searchHero as searchCallbacks} from './js/callbacks';
-import {searchHero}  from './js/promise';
-import './style.css';
+import {  promesaLenta, promesaMedia, promesaRapida  } from './js/promise';
 
-const heroeId = 'capi';
-const heroeId2 = 'iron';
+/* promesaLenta.then( console.log );
+promesaMedia.then( console.log );
+promesaRapida.then( console.log ); */
 
-searchHero( heroeId, ( err, hero )=>{
-    if( err ){
-        console.error( err );
-    }else{
-        console.log( hero );
-    }
-} );
-
-
-searchHero( heroeId )
-    .then(( hero )=>{
-        console.log(`Enviando a ${hero.nombre} a la misión`);
-    })
+Promise.race( [  promesaLenta, promesaMedia, promesaRapida  ] )
+    .then(mensaje => console.log(mensaje))
